@@ -1,0 +1,29 @@
+import {ApiResultsModel, ApiSingeResultModel} from './api-models.interface';
+
+export class SingleResult {
+  title: string;
+  year: string;
+  imdbID: string;
+  type: string;
+  poster: string;
+
+  constructor(params: ApiSingeResultModel) {
+    this.title = params.Title;
+    this.year = params.Year;
+    this.imdbID = params.imdbID;
+    this.type = params.Type;
+    this.poster = params.Poster;
+  }
+}
+
+export class ResultsList {
+  search: SingleResult[];
+  totalResults: number;
+  response: string;
+
+  constructor(params: ApiResultsModel) {
+    this.search = params.Search.map(result => new SingleResult(result)) || [];
+    this.totalResults = params.totalResults;
+    this.response = params.Response;
+  }
+}
