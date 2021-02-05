@@ -1,4 +1,6 @@
+import {apiKey} from './api.const';
+
 export const environment = {
   production: true,
-  apiUrl: ''
+  apiUrl: 'http://www.omdbapi.com/?apikey=' + apiKey,
 };
