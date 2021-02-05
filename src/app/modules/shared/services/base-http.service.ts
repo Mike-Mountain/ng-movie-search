@@ -3,6 +3,11 @@ import {environment} from '../../../../environments/environment';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 
+type SearchType = 'i' | 't' | 's';
+// TODO: Add search parameters for better search experience.
+type mediaType = 'movie' | 'series' | 'episode';
+type plotType = 'short' | 'full';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -14,8 +19,8 @@ export class BaseHttpService<T> {
     this.apiUrl = environment.apiUrl;
   }
 
-  public setUrl(partial?: string): string {
-    return `${this.apiUrl}/${partial}`;
+  public setUrl(type: SearchType, query: string): string {
+    return `${environment.apiUrl}&${type}=${query}`;
   }
 
   public setHeaders(headers: {}): HttpHeaders {

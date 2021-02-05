@@ -1,15 +1,23 @@
-import { TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { AppComponent } from './app.component';
+import {TestBed} from '@angular/core/testing';
+import {RouterTestingModule} from '@angular/router/testing';
+import {AppComponent} from './app.component';
+import {LayoutComponent} from './modules/core/components/layout/layout.component';
+import {NavbarComponent} from './modules/core/components/navbar/navbar.component';
+import {SearchComponent} from './modules/search/components/search/search.component';
+import {SearchModule} from './modules/search/search.module';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        SearchModule
       ],
       declarations: [
-        AppComponent
+        AppComponent,
+        LayoutComponent,
+        NavbarComponent,
+        SearchComponent
       ],
     }).compileComponents();
   });
@@ -18,18 +26,5 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
-  });
-
-  it(`should have as title 'ng-movie-search'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('ng-movie-search');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('ng-movie-search');
   });
 });
