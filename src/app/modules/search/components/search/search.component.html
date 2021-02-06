@@ -6,10 +6,25 @@
       class="form-control"
       id="mediaSearchInput"
       placeholder="Search movies, series, and video games"
+      [(ngModel)]="searchQuery"
     >
   </div>
-  <div class="flex-between flex-column">
-    <button class="btn btn-outline-primary w-60">Search</button>
-    <button class="btn btn-outline-secondary btn-sm w-40 mt-2">Feelin' Lucky</button>
+  <div
+    class="flex-between"
+    [ngClass]="isRouted ? ['flex-row-reverse'] : ['flex-column']"
+  >
+    <button
+      class="btn btn-outline-primary"
+      [ngClass]="isRouted ? ['w-55'] : ['w-60']"
+      (click)="search(searchQuery)"
+    >
+      Search
+    </button>
+    <button
+      class="btn btn-outline-secondary"
+      [ngClass]="isRouted ? ['w-40'] : ['btn-sm', 'mt-2', 'w-40']"
+    >
+      Feelin' Lucky
+    </button>
   </div>
 </section>

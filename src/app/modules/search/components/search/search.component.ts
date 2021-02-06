@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 
 @Component({
@@ -8,7 +8,8 @@ import {Router} from '@angular/router';
 })
 export class SearchComponent implements OnInit {
 
-  public searchQuery: string | undefined;
+  @Input() public isRouted: boolean | undefined;
+  public searchQuery = '';
 
   constructor(private router: Router) {
   }
@@ -17,7 +18,7 @@ export class SearchComponent implements OnInit {
   }
 
   public search(query: string): void {
-    this.router.navigateByUrl(`'results/${query}`);
+    this.router.navigateByUrl(`results/${query}`);
   }
 
 }

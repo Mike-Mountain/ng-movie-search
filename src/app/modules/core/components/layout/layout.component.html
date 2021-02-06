@@ -1,4 +1,4 @@
-<div class="app-layout">
+<div class="app-layout" [ngClass]="isRouted ? 'show-content' : 'hide-content'">
   <div class="navigation">
     <app-navbar></app-navbar>
   </div>
@@ -6,6 +6,8 @@
     <router-outlet></router-outlet>
   </main>
   <div class="search">
-    <app-search></app-search>
+    <app-search
+      [isRouted]="isRouted"
+    ></app-search>
   </div>
 </div>

@@ -1,1 +1,5 @@
-<p>results-list works!</p>
+<section class="results-list">
+  <ng-container *ngIf="results$ && results$ | async as resultsList">
+    <pre>{{resultsList | json}}</pre>
+  </ng-container>
+</section>

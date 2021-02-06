@@ -17,7 +17,10 @@ describe('LayoutComponent', () => {
         NavbarComponent,
         SearchComponent
       ],
-      imports: [RouterTestingModule, SearchModule]
+      imports: [
+        RouterTestingModule,
+        SearchModule
+      ]
     })
       .compileComponents();
   });
@@ -30,5 +33,9 @@ describe('LayoutComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should detect the current route', () => {
+    //
   });
 });
