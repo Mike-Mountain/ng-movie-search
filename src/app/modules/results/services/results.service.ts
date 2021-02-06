@@ -3,8 +3,8 @@ import {BaseHttpService} from '../../shared/services/base-http.service';
 import {ResultsList} from '../models/results.model';
 import {HttpClient} from '@angular/common/http';
 import {SearchType} from '../../shared/models/api-params.model';
-import {BehaviorSubject, Observable} from 'rxjs';
-import {map, tap} from 'rxjs/operators';
+import {BehaviorSubject, Observable, of} from 'rxjs';
+import {catchError, map, tap} from 'rxjs/operators';
 import {ApiResultsModel} from '../models/api-models.interface';
 
 @Injectable({
@@ -13,9 +13,9 @@ import {ApiResultsModel} from '../models/api-models.interface';
 export class ResultsService extends BaseHttpService<ResultsList> {
 
 
+  public searchQuerySrc: string | undefined;
   private resultsSrc = new BehaviorSubject<ResultsList | undefined>(undefined);
   public resultsStore = this.resultsSrc.asObservable();
-  public searchQuerySrc: string | undefined;
 
   constructor(private http: HttpClient) {
     super(http);
@@ -24,9 +24,12 @@ export class ResultsService extends BaseHttpService<ResultsList> {
   public searchMedia(type: SearchType, query: string): Observable<ResultsList> {
     const url = super.setUrl(type, query);
     return super._get(url).pipe(
-      // TODO: Store results in memory
-      tap(results => console.log(results)),
-      map(results => new ResultsList(results as unknown as ApiResultsModel))
+      tap(results => this.resultsSrc.next(results)),
+      map(results => new ResultsList(results as unknown as ApiResultsModel)),
+      catchError(err => {
+        console.log(err);
+        throw new Error();
+      })
     );
   }
 

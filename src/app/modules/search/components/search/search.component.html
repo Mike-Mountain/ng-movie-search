@@ -23,6 +23,7 @@
     <button
       class="btn btn-outline-secondary"
       [ngClass]="isRouted ? ['w-40'] : ['btn-sm', 'mt-2', 'w-40']"
+      (click)="feelingLuckySearch(searchQuery)"
     >
       Feelin' Lucky
     </button>

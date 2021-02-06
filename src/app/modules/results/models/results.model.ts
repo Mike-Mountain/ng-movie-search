@@ -1,7 +1,22 @@
 import {ApiResultsModel, ApiSingeResultModel} from './api-models.interface';
 
+function formatTitle(title: string): Title | undefined {
+  return title.includes(':') ?
+    {
+      title: title.split(':')[0],
+      subtitle: title.split(':')[1]
+    } :
+    undefined;
+}
+
+export interface Title {
+  title: string;
+  subtitle: string;
+}
+
 export class SingleResult {
   title: string;
+  altTitle: Title | undefined;
   year: string;
   imdbID: string;
   type: string;
@@ -9,6 +24,7 @@ export class SingleResult {
 
   constructor(params: ApiSingeResultModel) {
     this.title = params.Title;
+    this.altTitle = formatTitle(params.Title);
     this.year = params.Year;
     this.imdbID = params.imdbID;
     this.type = params.Type;

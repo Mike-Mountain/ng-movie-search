@@ -1,5 +1,9 @@
 <section class="results-list">
   <ng-container *ngIf="results$ && results$ | async as resultsList">
-    <pre>{{resultsList | json}}</pre>
+    <ng-container *ngFor="let result of resultsList.search">
+      <app-result-list-item
+        [searchResult]="result"
+      ></app-result-list-item>
+    </ng-container>
   </ng-container>
 </section>

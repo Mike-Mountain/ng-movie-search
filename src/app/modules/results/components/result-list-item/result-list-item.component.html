@@ -1,0 +1,12 @@
+<div class="card my-1" *ngIf="searchResult">
+  <div class="flex-between flex-align-start">
+    <div class="poster">
+      <img class="poster-image" [src]="searchResult.poster" [alt]="'Poster for ' + searchResult?.altTitle?.title || searchResult.title">
+    </div>
+    <div class="details">
+      <h3 class="card-title">{{searchResult?.altTitle?.title || searchResult.title}}</h3>
+      <p class="card-subtitle">{{searchResult.altTitle?.subtitle}}</p>
+      <small class="text-sm-left">{{searchResult.type}}</small>
+    </div>
+  </div>
+</div>

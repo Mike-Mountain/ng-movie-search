@@ -7,7 +7,7 @@
 }
 
 .show-content {
-  grid-template-rows: 2.5rem 1fr 9rem;
+  grid-template-rows: 2.5rem calc(100% - 2.5rem - 9rem) 9rem;
 }
 
 .content, .search {
@@ -16,6 +16,11 @@
     width: 60%;
     margin: 0 auto;
   }
+}
+
+.content {
+  max-height: 100%;
+  overflow-y: auto;
 }
 
 .hide-content {
