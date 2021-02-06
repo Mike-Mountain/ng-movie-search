@@ -20,10 +20,7 @@ export class SearchComponent implements OnInit {
   ngOnInit(): void {
     this.routerSubscription = this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        // Grab the query string from the url and reformat
-        const query = event.urlAfterRedirects.split('/')[2];
-        const queryStrings = query.split('%20');
-        this.searchQuery = queryStrings.join(' ');
+        this.searchQuery = this.setSearchQuery(event.urlAfterRedirects);
       }
     });
   }
@@ -34,6 +31,19 @@ export class SearchComponent implements OnInit {
 
   public feelingLuckySearch(query: string): void {
     this.router.navigateByUrl(`details/${query}`);
+  }
+
+  private setSearchQuery(url: string): string {
+    if (url.includes('results')) {
+      // Grab the query string from the url and reformat
+      const query = url.split('/')[2];
+      const queryStrings = query.split('%20');
+      return queryStrings.join(' ');
+    } else if (url.includes('details')) {
+      // TODO: Fetch the title from the details service
+      return this.searchQuery || '';
+    }
+    return '';
   }
 
 }

@@ -12,7 +12,6 @@ import {ApiResultsModel} from '../models/api-models.interface';
 })
 export class ResultsService extends BaseHttpService<ResultsList> {
 
-
   public searchQuerySrc: string | undefined;
   private resultsSrc = new BehaviorSubject<ResultsList | undefined>(undefined);
   public resultsStore = this.resultsSrc.asObservable();

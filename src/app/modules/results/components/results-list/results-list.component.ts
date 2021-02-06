@@ -3,7 +3,6 @@ import {Observable, Subscription} from 'rxjs';
 import {ActivatedRoute} from '@angular/router';
 import {ResultsService} from '../../services/results.service';
 import {ResultsList} from '../../models/results.model';
-import results from 'src/assets/mock-data/results.json';
 
 @Component({
   selector: 'app-results-list',
@@ -15,19 +14,17 @@ export class ResultsListComponent implements OnInit, OnDestroy {
   public results$: Observable<ResultsList> | undefined;
   private paramSubscription: Subscription | undefined;
 
-  // private results = results;
-
   constructor(private route: ActivatedRoute,
               private resultsService: ResultsService) {
   }
 
   ngOnInit(): void {
     this.paramSubscription = this.route.params.subscribe(params => {
-      if (this.resultsService.searchQuerySrc !== params.query) {
-        this.results$ = this.resultsService.searchMedia('s', params.query);
+      if (this.resultsService.searchQuerySrc !== params.query && this.resultsService.hasResults()) {
+        this.results$ = this.resultsService.resultsStore as Observable<ResultsList>;
         this.resultsService.searchQuerySrc = params.query;
       } else {
-        this.results$ = this.resultsService.resultsStore as Observable<ResultsList>;
+        this.results$ = this.resultsService.searchMedia('s', params.query);
       }
     });
   }
