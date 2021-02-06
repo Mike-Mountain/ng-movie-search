@@ -2,13 +2,17 @@
   <div class="flex-between flex-align-start">
     <!--// TODO: set up a light box for image view -->
     <div class="poster">
-      <img class="poster-image" [src]="searchResult.poster" [alt]="'Poster for ' + searchResult?.altTitle?.title || searchResult.title">
+      <img
+        class="poster-image"
+        [src]="searchResult.poster"
+        [alt]="'Poster for ' + (searchResult.title | breakTitle)?.title || searchResult.title"
+      >
     </div>
     <div class="details">
       <a class="card-title" [routerLink]="'/details/' + searchResult.imdbID">
-        {{searchResult?.altTitle?.title || searchResult.title}}
+        {{(searchResult.title | breakTitle)?.title || searchResult.title}}
       </a>
-      <p class="card-subtitle">{{searchResult.altTitle?.subtitle}}</p>
+      <p class="card-subtitle">{{(searchResult.title | breakTitle)?.subtitle}}</p>
       <small class="text-sm-left">{{searchResult.type}}</small>
     </div>
   </div>

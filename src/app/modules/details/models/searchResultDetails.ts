@@ -1,10 +1,8 @@
 import {ApiDetailsModel} from './api-details-model.interface';
-import {Title} from '../../results/models/results.model';
 import {StringUtil} from '../../shared/utils/helpers.util';
 
 export class SearchResultDetails {
   title: string;
-  altTitle: Title | undefined;
   year: string;
   rated: string;
   released: string;
@@ -31,7 +29,6 @@ export class SearchResultDetails {
 
   constructor(params: ApiDetailsModel) {
     this.title = params.Title;
-    this.altTitle = StringUtil.formatTitle(params.Title);
     this.year = params.Year;
     this.rated = params.Rated;
     this.runtime = params.Runtime;
