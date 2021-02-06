@@ -1,5 +1,4 @@
 import {ApiDetailsModel} from './api-details-model.interface';
-import {StringUtil} from '../../shared/utils/helpers.util';
 
 export class SearchResultDetails {
   title: string;

@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {BaseHttpService} from '../../shared/services/base-http.service';
+import {BaseHttpService} from '../../shared/services/base-http/base-http.service';
 import {SearchResultDetails} from '../models/searchResultDetails';
 import {HttpClient} from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';

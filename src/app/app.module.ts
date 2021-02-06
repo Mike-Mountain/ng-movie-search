@@ -4,7 +4,8 @@ import {NgModule} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {CoreModule} from './modules/core/core.module';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {LoadingInterceptor} from './modules/core/interceptors/loading-interceptor/loading.interceptor';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,7 @@ import {HttpClientModule} from '@angular/common/http';
     HttpClientModule,
     CoreModule
   ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -2,7 +2,7 @@ import {TestBed} from '@angular/core/testing';
 
 import {BaseHttpService} from './base-http.service';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
-import {environment} from '../../../../environments/environment';
+import {environment} from '../../../../../environments/environment';
 
 class Test {
   name: string | undefined;

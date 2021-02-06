@@ -1,9 +1,11 @@
 <section class="results-list">
-  <ng-container *ngIf="results$ && results$ | async as resultsList">
-    <ng-container *ngFor="let result of resultsList.search">
-      <app-result-list-item
-        [searchResult]="result"
-      ></app-result-list-item>
+  <app-spinner>
+    <ng-container *ngIf="results$ | async as resultsList">
+      <ng-container *ngFor="let result of resultsList.search">
+        <app-result-list-item
+          [searchResult]="result"
+        ></app-result-list-item>
+      </ng-container>
     </ng-container>
-  </ng-container>
+  </app-spinner>
 </section>

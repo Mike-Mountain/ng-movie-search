@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {BaseHttpService} from '../../shared/services/base-http.service';
+import {BaseHttpService} from '../../shared/services/base-http/base-http.service';
 import {ResultsList} from '../models/results.model';
 import {HttpClient} from '@angular/common/http';
 import {SearchType} from '../../shared/models/api-params.model';
