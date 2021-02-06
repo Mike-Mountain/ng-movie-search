@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "dev": "ng serve -c dev",
+    "dev:host": "ng serve -c dev --host 192.168.43.119",
     "build": "ng build",
     "test": "ng test --code-coverage true --source-map true",
     "lint": "ng lint",
