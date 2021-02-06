@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {NavigationEnd, Router} from '@angular/router';
 import {Subscription} from 'rxjs';
+import {DetailsService} from '../../../details/services/details.service';
 
 @Component({
   selector: 'app-search',
@@ -14,7 +15,8 @@ export class SearchComponent implements OnInit {
 
   private routerSubscription: Subscription | undefined;
 
-  constructor(private router: Router) {
+  constructor(private router: Router,
+              private detailsService: DetailsService) {
   }
 
   ngOnInit(): void {
@@ -26,11 +28,13 @@ export class SearchComponent implements OnInit {
   }
 
   public search(query: string): void {
+    this.detailsService.searchType = 'id';
     this.router.navigateByUrl(`results/${query}`);
   }
 
   public feelingLuckySearch(query: string): void {
-    this.router.navigateByUrl(`details/${query}`);
+    this.detailsService.searchType = 'title';
+    this.router.navigateByUrl(`details/title/${query}`);
   }
 
   private setSearchQuery(url: string): string {
@@ -40,8 +44,12 @@ export class SearchComponent implements OnInit {
       const queryStrings = query.split('%20');
       return queryStrings.join(' ');
     } else if (url.includes('details')) {
-      // TODO: Fetch the title from the details service
-      return this.searchQuery || '';
+      if (!this.searchQuery) {
+        const query = url.split('/')[4];
+        const queryStrings = query.split('%20');
+        this.searchQuery = queryStrings.join(' ');
+      }
+      return this.searchQuery;
     }
     return '';
   }

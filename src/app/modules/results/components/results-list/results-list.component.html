@@ -4,6 +4,7 @@
       <ng-container *ngFor="let result of resultsList.search">
         <app-result-list-item
           [searchResult]="result"
+          [searchQuery]="searchQuery"
         ></app-result-list-item>
       </ng-container>
     </ng-container>

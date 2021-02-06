@@ -12,6 +12,7 @@ import {ResultsList} from '../../models/results.model';
 export class ResultsListComponent implements OnInit, OnDestroy {
 
   public results$: Observable<ResultsList> | undefined;
+  public searchQuery = '';
   private paramSubscription: Subscription | undefined;
 
   constructor(private route: ActivatedRoute,
@@ -26,7 +27,8 @@ export class ResultsListComponent implements OnInit, OnDestroy {
       //   console.log(this.results$);
       //   this.resultsService.searchQuerySrc = params.query;
       // } else {
-        this.results$ = this.resultsService.searchMedia('s', params.query);
+      this.searchQuery = params.query;
+      this.results$ = this.resultsService.searchMedia('s', params.query);
       // }
     });
   }

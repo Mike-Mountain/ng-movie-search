@@ -7,7 +7,7 @@ import {Title} from '../../models/api-params.model';
 export class BreakTitlePipe implements PipeTransform {
 
   transform(title: string): Title | undefined {
-    return title.includes(':') ?
+    return title?.includes(':') ?
       new Title ({
         title: title.split(':')[0],
         subtitle: title.split(':')[1]

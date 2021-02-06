@@ -25,7 +25,11 @@ export class DetailsComponent implements OnInit, OnDestroy {
       //   this.details$ = this.detailsService.detailsStore as Observable<SearchResultDetails>;
       //   this.detailsService.imdbIdSrc = params.imdbId;
       // } else {
+      if (this.detailsService.searchType === 'id' && params.imdbId) {
         this.details$ = this.detailsService.getDetails(params.imdbId);
+      } else {
+        this.details$ = this.detailsService.feelinLucky(params.query);
+      }
       // }
     });
   }

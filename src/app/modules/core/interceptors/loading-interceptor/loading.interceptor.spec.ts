@@ -2,14 +2,13 @@ import {TestBed} from '@angular/core/testing';
 
 import {LoadingInterceptor} from './loading.interceptor';
 import {LoadingService} from '../../../shared/services/loading/loading.service';
-import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {ResultsService} from '../../../results/services/results.service';
 
 describe('LoadingInterceptor', () => {
   let service: LoadingService;
   let resultsService: ResultsService;
-  let httpMock: HttpTestingController;
 
   beforeEach(() => TestBed.configureTestingModule({
     imports: [HttpClientTestingModule],
@@ -25,7 +24,6 @@ describe('LoadingInterceptor', () => {
 
   service = TestBed.inject(LoadingService);
   resultsService = TestBed.inject(ResultsService);
-  httpMock = TestBed.inject(HttpTestingController);
 
   it('should be created', () => {
     const interceptor: LoadingInterceptor = TestBed.inject(LoadingInterceptor);

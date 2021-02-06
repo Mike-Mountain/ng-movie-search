@@ -9,7 +9,7 @@
       >
     </div>
     <div class="details">
-      <a class="card-title" [routerLink]="'/details/' + searchResult.imdbID">
+      <a class="card-title" [routerLink]="'/details/id/' + searchResult.imdbID + '/' + searchQuery">
         {{(searchResult.title | breakTitle)?.title || searchResult.title}}
       </a>
       <p class="card-subtitle">{{(searchResult.title | breakTitle)?.subtitle}}</p>

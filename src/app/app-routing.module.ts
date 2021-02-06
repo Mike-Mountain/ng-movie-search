@@ -3,7 +3,7 @@ import {Routes, RouterModule} from '@angular/router';
 
 const routes: Routes = [
   {path: 'results/:query', loadChildren: () => import('./modules/results/results.module').then(m => m.ResultsModule)},
-  {path: 'details/:imdbId', loadChildren: () => import('./modules/details/details.module').then(m => m.DetailsModule)}
+  {path: 'details', loadChildren: () => import('./modules/details/details.module').then(m => m.DetailsModule)}
 ];
 
 @NgModule({

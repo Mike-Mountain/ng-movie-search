@@ -9,6 +9,7 @@ import {SingleResult} from '../../models/results.model';
 export class ResultListItemComponent implements OnInit {
 
   @Input() searchResult: SingleResult | undefined;
+  @Input() searchQuery: string | undefined;
 
   constructor() {
   }
