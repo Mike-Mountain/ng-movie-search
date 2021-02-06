@@ -20,12 +20,14 @@ export class ResultsListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.paramSubscription = this.route.params.subscribe(params => {
-      if (this.resultsService.searchQuerySrc !== params.query && this.resultsService.hasResults()) {
-        this.results$ = this.resultsService.resultsStore as Observable<ResultsList>;
-        this.resultsService.searchQuerySrc = params.query;
-      } else {
+      // TODO: Using the store to save the results of previous searches seems to break the UI when going back
+      // if (this.resultsService.searchQuerySrc !== params.query && this.resultsService.hasResults()) {
+      //   this.results$ = this.resultsService.resultsStore as Observable<ResultsList>;
+      //   console.log(this.results$);
+      //   this.resultsService.searchQuerySrc = params.query;
+      // } else {
         this.results$ = this.resultsService.searchMedia('s', params.query);
-      }
+      // }
     });
   }
 

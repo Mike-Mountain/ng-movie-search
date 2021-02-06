@@ -1,0 +1,16 @@
+.details {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-gap: .25rem .75rem;
+  grid-template-columns: 40% 1fr;
+  grid-template-rows: 1fr 60%;
+}
+
+.secondary-details {
+  grid-column: 1/4;
+}
+
+.badge {
+  margin: 0 .25rem;
+}

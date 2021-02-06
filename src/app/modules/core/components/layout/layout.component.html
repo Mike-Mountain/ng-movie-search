@@ -2,7 +2,7 @@
   <div class="navigation">
     <app-navbar></app-navbar>
   </div>
-  <main class="content">
+  <main class="content" [class.card]="isRouted">
     <router-outlet></router-outlet>
   </main>
   <div class="search">

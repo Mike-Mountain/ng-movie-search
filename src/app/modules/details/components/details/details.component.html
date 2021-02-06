@@ -1,1 +1,47 @@
-<p>details works!</p>
+<section class="details">
+  <ng-container *ngIf="details$ | async as details">
+    <img
+      class="details-poster"
+      [src]="details.poster"
+      [alt]="'Poster for ' + details?.altTitle?.title || details.title"
+    >
+    <div class="primary-details">
+      <h3 class="card-title">{{details?.altTitle?.title || details.title}}</h3>
+      <h5 class="card-subtitle">{{details.altTitle?.subtitle}}</h5>
+      <div class="w-100 mt-2 flex-between flex-wrap">
+        <small class="badge badge-primary my-1">{{details.released}}</small>
+        <small class="badge badge-primary my-1">{{details.runtime}}</small>
+        <small class="badge badge-primary my-1">{{details.language}}</small>
+        <small class="badge badge-primary my-1" *ngIf="details.website !== 'N/A'">
+          <a [href]="details.website" target="_blank">
+            {{details.website}}
+          </a>
+        </small>
+      </div>
+      <div class="w-100 mt-2 flex-between flex-wrap">
+        <ng-container *ngFor="let genre of (details.genre | toArray)">
+          <small class="badge badge-secondary my-1">{{genre}}</small>
+        </ng-container>
+      </div>
+    </div>
+    <div class="secondary-details">
+      <div class="w-100 mb-2 flex-between flex-wrap">
+        <ng-container *ngFor="let actor of (details.actors | toArray)">
+          <small class="badge badge-danger my-1">{{actor}}</small>
+        </ng-container>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <p>{{details.plot}}</p>
+        </div>
+      </div>
+      <div class="w-100 mt-2 flex-between flex-wrap">
+        <small class="badge badge-success my-1">imDB: {{details.imdbRating}}</small>
+        <small class="badge badge-success my-1">Metascore: {{details.metascore}}</small>
+      </div>
+      <div class="w-100 flex-center">
+        <small class="badge badge-success my-1 text-wrap">{{details.awards}}</small>
+      </div>
+    </div>
+  </ng-container>
+</section>

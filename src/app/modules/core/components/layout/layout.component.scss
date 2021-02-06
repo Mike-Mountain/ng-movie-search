@@ -20,7 +20,16 @@
 
 .content {
   max-height: 100%;
+  width: 95%;
+  margin: -.25rem auto;
   overflow-y: auto;
+  z-index: 8;
+  padding: .5rem;
+}
+
+.card {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }
 
 .hide-content {
@@ -29,4 +38,5 @@
 
 .navigation {
   width: 100%;
+  z-index: 9;
 }
