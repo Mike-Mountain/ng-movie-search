@@ -15,8 +15,12 @@ export class BaseHttpService<T> {
     this.apiUrl = environment.apiUrl;
   }
 
-  public setUrl(type: SearchType, query: string): string {
-    return `${environment.apiUrl}&${type}=${query}`;
+  public setUrl(type: SearchType, query: string, page?: number): string {
+    let url = `${environment.apiUrl}&${type}=${query}`;
+    if (page) {
+      url += `&page=${page}`;
+    }
+    return url;
   }
 
   public setHeaders(headers: {}): HttpHeaders {

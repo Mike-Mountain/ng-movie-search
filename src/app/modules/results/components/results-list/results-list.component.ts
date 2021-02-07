@@ -13,6 +13,7 @@ export class ResultsListComponent implements OnInit, OnDestroy {
 
   public results$: Observable<ResultsList> | undefined;
   public searchQuery = '';
+  public currentPage = 1;
   private paramSubscription: Subscription | undefined;
 
   constructor(private route: ActivatedRoute,
@@ -29,6 +30,7 @@ export class ResultsListComponent implements OnInit, OnDestroy {
       // } else {
       this.searchQuery = params.query;
       this.results$ = this.resultsService.searchMedia('s', params.query);
+      this.currentPage = this.resultsService.currentPage;
       // }
     });
   }
@@ -37,4 +39,8 @@ export class ResultsListComponent implements OnInit, OnDestroy {
     this.paramSubscription?.unsubscribe();
   }
 
+  public updatePage(page: number): void {
+    this.results$ = this.resultsService.getNewPage(page, this.searchQuery);
+    this.currentPage = page;
+  }
 }

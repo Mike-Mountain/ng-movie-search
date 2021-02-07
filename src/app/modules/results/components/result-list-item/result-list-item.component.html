@@ -4,7 +4,7 @@
     <div class="poster">
       <img
         class="poster-image"
-        [src]="searchResult.poster"
+        [src]="searchResult.poster | defaultImage"
         [alt]="'Poster for ' + (searchResult.title | breakTitle)?.title || searchResult.title"
       >
     </div>

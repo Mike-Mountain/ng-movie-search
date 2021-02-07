@@ -5,6 +5,7 @@ import {NavbarComponent} from '../navbar/navbar.component';
 import {RouterTestingModule} from '@angular/router/testing';
 import {SearchComponent} from '../../../search/components/search/search.component';
 import {SearchModule} from '../../../search/search.module';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
 
 describe('LayoutComponent', () => {
   let component: LayoutComponent;
@@ -19,7 +20,8 @@ describe('LayoutComponent', () => {
       ],
       imports: [
         RouterTestingModule,
-        SearchModule
+        SearchModule,
+        HttpClientTestingModule
       ]
     })
       .compileComponents();

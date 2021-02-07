@@ -12,7 +12,7 @@ import {ApiResultsModel} from '../models/api-models.interface';
 })
 export class ResultsService extends BaseHttpService<ResultsList> {
 
-  public searchQuerySrc: string | undefined;
+  public currentPage = 1;
   private resultsSrc = new BehaviorSubject<ResultsList | undefined>(undefined);
   public resultsStore = this.resultsSrc.asObservable();
 
@@ -20,8 +20,28 @@ export class ResultsService extends BaseHttpService<ResultsList> {
     super(http);
   }
 
+  public get page(): number {
+    return this.currentPage;
+  }
+
+  public set page(value: number) {
+    this.currentPage = value;
+  }
+
   public searchMedia(type: SearchType, query: string): Observable<ResultsList> {
     const url = super.setUrl(type, query);
+    return super._get(url).pipe(
+      tap(results => this.resultsSrc.next(results)),
+      map(results => new ResultsList(results as unknown as ApiResultsModel)),
+      catchError(err => {
+        console.log(err);
+        throw new Error();
+      })
+    );
+  }
+
+  public getNewPage(page: number, query: string): Observable<ResultsList> {
+    const url = super.setUrl('s', query, page);
     return super._get(url).pipe(
       tap(results => this.resultsSrc.next(results)),
       map(results => new ResultsList(results as unknown as ApiResultsModel)),

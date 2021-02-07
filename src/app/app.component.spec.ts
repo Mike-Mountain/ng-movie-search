@@ -5,13 +5,15 @@ import {LayoutComponent} from './modules/core/components/layout/layout.component
 import {NavbarComponent} from './modules/core/components/navbar/navbar.component';
 import {SearchComponent} from './modules/search/components/search/search.component';
 import {SearchModule} from './modules/search/search.module';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-        SearchModule
+        SearchModule,
+        HttpClientTestingModule
       ],
       declarations: [
         AppComponent,

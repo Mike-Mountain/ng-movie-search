@@ -11,19 +11,22 @@ describe('LoadingInterceptor', () => {
   let resultsService: ResultsService;
 
   beforeEach(() => TestBed.configureTestingModule({
-    imports: [HttpClientTestingModule],
-    providers: [
-      LoadingService,
-      {
-        provide: HTTP_INTERCEPTORS,
-        useClass: LoadingInterceptor,
-        multi: true
-      }
-    ]
-  }));
+      imports: [HttpClientTestingModule],
+      providers: [
+        LoadingService,
+        {
+          provide: HTTP_INTERCEPTORS,
+          useClass: LoadingInterceptor,
+          multi: true
+        }
+      ]
+    }
+  ));
 
-  service = TestBed.inject(LoadingService);
-  resultsService = TestBed.inject(ResultsService);
+  beforeEach(() => {
+    service = TestBed.inject(LoadingService);
+    resultsService = TestBed.inject(ResultsService);
+  });
 
   it('should be created', () => {
     const interceptor: LoadingInterceptor = TestBed.inject(LoadingInterceptor);
