@@ -1,6 +1,6 @@
 <ng-container *ngIf="details$ | async as details">
   <section class="details-container">
-    <div class="poster"></div>
+    <div [bgImage]="details.poster"></div>
     <div class="details">
       <h2 class="card-title">{{(details.title | breakTitle)?.title || details.title}}</h2>
       <h4 class="card-subtitle">{{(details.title | breakTitle)?.subtitle}}</h4>

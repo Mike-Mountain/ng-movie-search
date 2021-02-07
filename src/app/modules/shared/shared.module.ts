@@ -4,6 +4,7 @@ import {BreakTitlePipe} from './pipes/break-title/break-title.pipe';
 import {ToArrayPipe} from './pipes/to-array/to-array.pipe';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { DefaultImagePipe } from './pipes/default-image/default-image.pipe';
+import { BgImageDirective } from './directives/bg-image/bg-image.directive';
 
 
 @NgModule({
@@ -11,13 +12,15 @@ import { DefaultImagePipe } from './pipes/default-image/default-image.pipe';
     ToArrayPipe,
     BreakTitlePipe,
     SpinnerComponent,
-    DefaultImagePipe
+    DefaultImagePipe,
+    BgImageDirective
   ],
   exports: [
     ToArrayPipe,
     BreakTitlePipe,
     SpinnerComponent,
-    DefaultImagePipe
+    DefaultImagePipe,
+    BgImageDirective
   ],
   imports: [
     CommonModule
