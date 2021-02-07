@@ -29,7 +29,7 @@ export class SearchComponent implements OnInit {
 
   public search(query: string): void {
     this.detailsService.searchType = 'id';
-    this.router.navigateByUrl(`results/${query}`);
+    this.router.navigate([`results/${query}`], {queryParams: {page: 1}});
   }
 
   public feelingLuckySearch(query: string): void {
@@ -40,7 +40,9 @@ export class SearchComponent implements OnInit {
   private setSearchQuery(url: string): string {
     if (url.includes('results')) {
       // Grab the query string from the url and reformat
-      const query = url.split('/')[2];
+      const fullString = url.split('/')[2];
+      // Remove query params
+      const query = fullString.split('?')[0];
       const queryStrings = query.split('%20');
       return queryStrings.join(' ');
     } else if (url.includes('details')) {

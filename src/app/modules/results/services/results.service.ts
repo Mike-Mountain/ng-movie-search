@@ -28,8 +28,13 @@ export class ResultsService extends BaseHttpService<ResultsList> {
     this.currentPage = value;
   }
 
-  public searchMedia(type: SearchType, query: string): Observable<ResultsList> {
-    const url = super.setUrl(type, query);
+  public searchMedia(type: SearchType, query: string, page?: number): Observable<ResultsList> {
+    let url: string;
+    if (page) {
+      url = super.setUrl(type, query, page);
+    } else {
+      url = super.setUrl(type, query);
+    }
     return super._get(url).pipe(
       tap(results => this.resultsSrc.next(results)),
       map(results => new ResultsList(results as unknown as ApiResultsModel)),
@@ -40,17 +45,17 @@ export class ResultsService extends BaseHttpService<ResultsList> {
     );
   }
 
-  public getNewPage(page: number, query: string): Observable<ResultsList> {
-    const url = super.setUrl('s', query, page);
-    return super._get(url).pipe(
-      tap(results => this.resultsSrc.next(results)),
-      map(results => new ResultsList(results as unknown as ApiResultsModel)),
-      catchError(err => {
-        console.log(err);
-        throw new Error();
-      })
-    );
-  }
+  // public getNewPage(page: number, query: string): Observable<ResultsList> {
+  //   const url = super.setUrl('s', query, page);
+  //   return super._get(url).pipe(
+  //     tap(results => this.resultsSrc.next(results)),
+  //     map(results => new ResultsList(results as unknown as ApiResultsModel)),
+  //     catchError(err => {
+  //       console.log(err);
+  //       throw new Error();
+  //     })
+  //   );
+  // }
 
   public hasResults(): boolean {
     return this.resultsSrc.getValue() !== undefined;

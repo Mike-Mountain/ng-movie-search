@@ -12,7 +12,13 @@
         <div class="w-100 mt-2 flex-between flex-wrap">
           <small class="badge badge-primary my-1">{{details.released}}</small>
           <small class="badge badge-primary my-1">{{details.runtime}}</small>
-          <small class="badge badge-primary my-1">{{details.language}}</small>
+        </div>
+        <div class="w-100 mt-2 flex-between flex-wrap">
+          <ng-container *ngFor="let language of (details.language | toArray)">
+            <small class="badge badge-warning my-1">{{language}}</small>
+          </ng-container>
+        </div>
+        <div class="w-100 mt-2 flex-between flex-wrap">
           <small class="badge badge-primary my-1" *ngIf="details.website !== 'N/A'">
             <a [href]="details.website" target="_blank">
               {{details.website}}

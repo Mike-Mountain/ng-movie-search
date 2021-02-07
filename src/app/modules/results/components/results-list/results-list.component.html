@@ -1,18 +1,22 @@
-<section class="results-list">
-  <ng-container *ngIf="results$ | async as resultsList">
+<section class="results-list" *ngIf="results">
+  <app-pagination
+    [page]="currentPage"
+    [totalPages]="results.totalResults"
+    (newPage)="updatePage($event)"
+  ></app-pagination>
+  <div class="results-content">
     <app-spinner>
-      <ng-container *ngFor="let result of resultsList.search">
+      <ng-container *ngFor="let result of results.search">
         <app-result-list-item
           [searchResult]="result"
           [searchQuery]="searchQuery"
         ></app-result-list-item>
       </ng-container>
     </app-spinner>
-    <app-pagination
-      *ngIf="resultsList.totalResults > 10"
-      [page]="currentPage"
-      [totalPages]="resultsList.totalResults"
-      (newPage)="updatePage($event)"
-    ></app-pagination>
-  </ng-container>
+  </div>
+  <app-pagination
+    [page]="currentPage"
+    [totalPages]="results.totalResults"
+    (newPage)="updatePage($event)"
+  ></app-pagination>
 </section>
