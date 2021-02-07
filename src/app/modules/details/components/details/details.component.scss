@@ -1,16 +1,32 @@
-.details {
+:host {
+  height: 100%;
+}
+
+.details-container {
   width: 100%;
   height: 100%;
   display: grid;
-  grid-gap: .25rem .75rem;
-  grid-template-columns: 40% 1fr;
-  grid-template-rows: 1fr 60%;
+  grid-template-rows: 60% 1fr;
 }
 
-.secondary-details {
-  grid-column: 1/4;
+.poster {
+  width: 100%;
+}
+
+.cast-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-body {
+  padding: .75rem;
 }
 
 .badge {
-  margin: 0 .25rem;
+  padding: .75rem;
+}
+
+.custom-card {
+  padding: .25rem;
 }

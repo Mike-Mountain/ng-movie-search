@@ -66,6 +66,7 @@ export class PaginationComponent implements OnInit {
         break;
     }
 
+    console.log(this.page);
     this.newPage.emit(this.page);
   }
 

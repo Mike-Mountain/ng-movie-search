@@ -1,4 +1,16 @@
-import {ApiDetailsModel} from './api-details-model.interface';
+import {ApiDetailsModel, ApiRatingsModel} from './api-details-model.interface';
+
+export class ResultRatings {
+  source: string;
+  value: string;
+
+  constructor(params: ApiRatingsModel) {
+    console.log(params.Source);
+    this.source = params.Source;
+    this.value = params.Value;
+    console.log(this);
+  }
+}
 
 export class SearchResultDetails {
   title: string;
@@ -14,7 +26,7 @@ export class SearchResultDetails {
   country: string;
   awards: string;
   poster: string;
-  ratings: [];
+  ratings: ResultRatings[];
   metascore: string;
   imdbRating: string;
   imdbVotes: string;
@@ -40,7 +52,7 @@ export class SearchResultDetails {
     this.country = params.Country;
     this.awards = params.Awards;
     this.poster = params?.Poster;
-    this.ratings = params.Ratings;
+    this.ratings = params.Ratings.map(rating => new ResultRatings(rating)) || [];
     this.metascore = params.Metascore;
     this.imdbRating = params.imdbRating;
     this.imdbVotes = params.imdbVotes;

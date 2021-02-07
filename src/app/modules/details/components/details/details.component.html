@@ -1,55 +1,101 @@
-<app-spinner>
-  <section class="details">
-    <ng-container *ngIf="details$ | async as details">
-      <img
-        class="details-poster"
-        [src]="details.poster"
-        [alt]="'Poster for ' + (details.title | breakTitle)?.title || details.title"
-      >
-      <div class="primary-details">
-        <h3 class="card-title">{{(details.title | breakTitle)?.title || details.title}}</h3>
-        <h5 class="card-subtitle">{{(details.title | breakTitle)?.subtitle}}</h5>
-        <div class="w-100 mt-2 flex-between flex-wrap">
-          <small class="badge badge-primary my-1">{{details.released}}</small>
-          <small class="badge badge-primary my-1">{{details.runtime}}</small>
-        </div>
-        <div class="w-100 mt-2 flex-between flex-wrap">
-          <ng-container *ngFor="let language of (details.language | toArray)">
-            <small class="badge badge-warning my-1">{{language}}</small>
-          </ng-container>
-        </div>
-        <div class="w-100 mt-2 flex-between flex-wrap">
-          <small class="badge badge-primary my-1" *ngIf="details.website !== 'N/A'">
-            <a [href]="details.website" target="_blank">
-              {{details.website}}
+<ng-container *ngIf="details$ | async as details">
+  <section class="details-container">
+    <div class="poster"></div>
+    <div class="details">
+      <h2 class="card-title">{{(details.title | breakTitle)?.title || details.title}}</h2>
+      <h4 class="card-subtitle">{{(details.title | breakTitle)?.subtitle}}</h4>
+      <div class="w-100 flex-start flex-wrap">
+        <ng-container *ngFor="let genre of (details.genre | toArray)">
+          <small class="text-primary mx-1">{{genre}}</small>
+        </ng-container>
+      </div>
+      <div class="plot">
+        <small>{{details.plot}}</small>
+      </div>
+      <div class="nav nav-tabs mb-1">
+        <ng-container *ngFor="let tab of tabs">
+          <div class="nav-item">
+            <a
+              class="nav-link"
+              [class.active]="tab === currentTab"
+              (click)="changeTab(tab, tabContent)"
+            >
+              {{tab}}
             </a>
-          </small>
-        </div>
-        <div class="w-100 mt-2 flex-between flex-wrap">
-          <ng-container *ngFor="let genre of (details.genre | toArray)">
-            <small class="badge badge-secondary my-1">{{genre}}</small>
-          </ng-container>
-        </div>
-      </div>
-      <div class="secondary-details">
-        <div class="w-100 mb-2 flex-between flex-wrap">
-          <ng-container *ngFor="let actor of (details.actors | toArray)">
-            <small class="badge badge-danger my-1">{{actor}}</small>
-          </ng-container>
-        </div>
-        <div class="card">
-          <div class="card-body">
-            <p>{{details.plot}}</p>
           </div>
-        </div>
-        <div class="w-100 mt-2 flex-between flex-wrap">
-          <small class="badge badge-success my-1">imDB: {{details.imdbRating}}</small>
-          <small class="badge badge-success my-1">Metascore: {{details.metascore}}</small>
-        </div>
-        <div class="w-100 flex-center">
-          <small class="badge badge-success my-1 text-wrap">{{details.awards}}</small>
+        </ng-container>
+      </div>
+      <div class="card mb-2">
+        <div class="card-body" #tabContent>
+          <ng-container [ngSwitch]="currentTab">
+            <ng-container *ngSwitchCase="'Cast'">
+              <h5>Actors:</h5>
+              <div class="w-100 flex-between flex-wrap">
+                <ng-container *ngFor="let actor of (details.actors | toArray)">
+                  <small class="card custom-card my-1">{{actor}}</small>
+                </ng-container>
+              </div>
+              <h5>Directed by:</h5>
+              <div class="w-100 flex-between flex-wrap">
+                <ng-container *ngFor="let director of (details.director | toArray)">
+                  <small class="card custom-card my-1">{{director}}</small>
+                </ng-container>
+              </div>
+            </ng-container>
+            <ng-container *ngSwitchCase="'Acclaim'">
+              <div class="w-100 flex-between">
+                <div class="w-70 d-flex flex-align-start flex-column">
+                  <ng-container *ngFor="let rating of (details.ratings)">
+                    <div class="card custom-card my-1 flex-align-start w-80">
+                      <small>
+                        {{rating.source}}
+                      </small>
+                    </div>
+                  </ng-container>
+                </div>
+                <div class="w-30 d-flex flex-align-end flex-column">
+                  <ng-container *ngFor="let rating of (details.ratings)">
+                    <div class="card custom-card flex-align-end w-80 my-1">
+                      <small>
+                        {{rating.value}}
+                      </small>
+                    </div>
+                  </ng-container>
+                </div>
+              </div>
+              <div class="w-100 flex-center">
+                <small class="card custom-card my-1 text-wrap">{{details.awards}}</small>
+              </div>
+            </ng-container>
+            <ng-container *ngSwitchCase="'More'">
+              <div class="w-100 flex-between">
+                <div class="w-33 flex-start">
+                  <small class="card custom-card my-1 text-wrap">{{details.released}}</small>
+                </div>
+                <div class="w-33 flex-center">
+                  <small class="card custom-card my-1 text-wrap">{{details.type}}</small>
+                </div>
+                <div class="w-33 flex-end">
+                  <small class="card custom-card my-1 text-wrap">{{details.runtime}}</small>
+                </div>
+              </div>
+              <hr class="dropdown-divider w-75 mx-auto">
+              <div class="w-100 mt-2 flex-between flex-wrap">
+                <ng-container *ngFor="let language of (details.language | toArray)">
+                  <small class="card custom-card my-1">{{language}}</small>
+                </ng-container>
+              </div>
+              <hr class="dropdown-divider w-75 mx-auto">
+              <div class="w-100 mt-2 flex-between flex-wrap">
+                <ng-container *ngFor="let country of (details.country | toArray)">
+                  <small class="card custom-card my-1">{{country}}</small>
+                </ng-container>
+              </div>
+            </ng-container>
+          </ng-container>
         </div>
       </div>
-    </ng-container>
+    </div>
   </section>
-</app-spinner>
+</ng-container>
+<!--</app-spinner>-->

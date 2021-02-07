@@ -28,3 +28,8 @@ export interface ApiDetailsModel {
   Website: string;
   Response: string;
 }
+
+export interface ApiRatingsModel {
+  Source: string;
+  Value: string;
+}

@@ -12,6 +12,9 @@ import {ActivatedRoute} from '@angular/router';
 export class DetailsComponent implements OnInit, OnDestroy {
 
   public details$: Observable<SearchResultDetails> | undefined;
+  public tabs = ['Cast', 'Acclaim', 'More'];
+  public currentTab = this.tabs[0];
+
   private paramSubscription: Subscription | undefined;
 
   constructor(private route: ActivatedRoute,
@@ -38,4 +41,8 @@ export class DetailsComponent implements OnInit, OnDestroy {
     this.paramSubscription?.unsubscribe();
   }
 
+  public changeTab(tab: string, tabContent: Element): void {
+    this.currentTab = tab;
+    tabContent.scrollIntoView({behavior: 'smooth'});
+  }
 }

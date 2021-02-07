@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { PaginationComponent } from './pagination.component';
+import {PaginationComponent} from './pagination.component';
 
 describe('PaginationComponent', () => {
   let component: PaginationComponent;
@@ -8,9 +8,9 @@ describe('PaginationComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PaginationComponent ]
+      declarations: [PaginationComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
@@ -21,5 +21,30 @@ describe('PaginationComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should paginate next', () => {
+    component.page = 1;
+    component.updatePage('next');
+    expect(component.page).toEqual(2);
+  });
+
+  it('should paginate previous', () => {
+    component.page = 3;
+    component.updatePage('previous');
+    expect(component.page).toEqual(2);
+  });
+
+  it('should not paginate back if the page is 1', () => {
+    component.page = 1;
+    component.updatePage('previous');
+    expect(component.page).toEqual(1);
+  });
+
+  it('should not paginate forward if on the last page', () => {
+    component.page = 10;
+    component.totalPages = 10;
+    component.updatePage('next');
+    expect(component.page).toEqual(10);
   });
 });
