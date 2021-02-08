@@ -8,11 +8,12 @@
         </span>
       </div>
       <input
+        #inputElement
         type="search"
         class="form-control border-primary text-primary"
         id="mediaSearchInput"
         placeholder="Search movies, series, and video games"
-        (keydown.enter)="search(searchQuery)"
+        (keydown.enter)="search(searchQuery); inputElement.blur()"
         [(ngModel)]="searchQuery"
       >
     </div>
