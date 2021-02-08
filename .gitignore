@@ -12,7 +12,7 @@
 /node_modules
 
 # API
-/src/environments/api.const.ts
+#/src/environments/api.const.ts
 
 # Mock Data
 /src/assets/mock-data/results.json
