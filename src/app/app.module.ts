@@ -5,9 +5,11 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {CoreModule} from './modules/core/core.module';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {LoadingInterceptor} from './modules/core/interceptors/loading-interceptor/loading.interceptor';
-import { ServiceWorkerModule } from '@angular/service-worker';
-import { environment } from '../environments/environment';
+import {ServiceWorkerModule} from '@angular/service-worker';
+import {environment} from '../environments/environment';
+import {ToastrModule} from 'ngx-toastr';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {ResponseInterceptor} from './modules/core/interceptors/loading-interceptor/response.interceptor';
 
 @NgModule({
   declarations: [
@@ -15,12 +17,14 @@ import { environment } from '../environments/environment';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     CoreModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    ToastrModule.forRoot({positionClass: 'toast-top-full-width', autoDismiss: false}),
+    ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production})
   ],
-  providers: [{provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true}],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: ResponseInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule {

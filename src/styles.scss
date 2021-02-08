@@ -2,4 +2,10 @@
 @import "scss/variables/breakpoints";
 @import "scss/variables/theme-colours";
 @import "~bootstrap/scss/bootstrap";
+@import '~ngx-toastr/toastr';
 @import "scss/utils/all";
+
+
+.toast-top-full-width {
+  top: 3em;
+}

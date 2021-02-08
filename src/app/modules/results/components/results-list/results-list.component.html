@@ -1,5 +1,5 @@
 <div #pageTop></div>
-<section class="results-list" *ngIf="results">
+<section class="results-list" *ngIf="results && results.search; else noResults">
   <div class="results-content">
     <app-spinner>
       <ng-container *ngFor="let result of results.search">
@@ -16,3 +16,15 @@
     (newPage)="updatePage($event, pageTop)"
   ></app-pagination>
 </section>
+
+<ng-template #noResults>
+  <div class="w-100 h-100 flex-center">
+    <div class="card mb-5">
+      <div class="card-body">
+        <h3 class="w-100  text-center">
+          Unfortunately, there are no results. Please check your query and try again
+        </h3>
+      </div>
+    </div>
+  </div>
+</ng-template>

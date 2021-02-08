@@ -29,9 +29,13 @@ export class ResultsListComponent implements OnInit, OnDestroy {
       this.queryParamSubscription = this.route.queryParams.subscribe(queryParams => {
         // HTTP Observables complete after they emit once, no need to unsubscribe.
         this.resultsService.searchMedia('s', params.query, queryParams.page).subscribe(results => {
-          this.results = results;
-          this.searchQuery = params.query;
-          this.currentPage = parseInt(queryParams.page, 10);
+          if (results) {
+            this.results = results;
+            this.searchQuery = params.query;
+            this.currentPage = parseInt(queryParams.page, 10);
+          } else {
+            this.results = {totalResults: 0, search: [], response: 'False'};
+          }
         });
       });
     });

@@ -22,13 +22,15 @@ export class SingleResult {
 }
 
 export class ResultsList {
-  search: SingleResult[];
-  totalResults: number;
-  response: string;
+  search: SingleResult[] | undefined;
+  totalResults: number | undefined;
+  response: string | undefined;
 
   constructor(params: ApiResultsModel) {
-    this.search = params.Search.map(result => new SingleResult(result)) || [];
-    this.totalResults = params.totalResults;
-    this.response = params.Response;
+    if (params.Response === 'True') {
+      this.search = params.Search.map(result => new SingleResult(result)) || [];
+      this.totalResults = params.totalResults;
+      this.response = params.Response;
+    }
   }
 }

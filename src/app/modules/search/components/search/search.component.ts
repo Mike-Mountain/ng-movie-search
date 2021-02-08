@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {NavigationEnd, Router} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {DetailsService} from '../../../details/services/details.service';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-search',
@@ -16,7 +17,8 @@ export class SearchComponent implements OnInit {
   private routerSubscription: Subscription | undefined;
 
   constructor(private router: Router,
-              private detailsService: DetailsService) {
+              private detailsService: DetailsService,
+              private toastr: ToastrService) {
   }
 
   ngOnInit(): void {
@@ -28,13 +30,21 @@ export class SearchComponent implements OnInit {
   }
 
   public search(query: string): void {
-    this.detailsService.searchType = 'id';
-    this.router.navigate([`results/${query}`], {queryParams: {page: 1}});
+    if (query.trim() !== '') {
+      this.detailsService.searchType = 'id';
+      this.router.navigate([`results/${query}`], {queryParams: {page: 1}});
+    } else {
+      this.toastr.error('Please enter a search query', '', {positionClass: 'toast-top-center'});
+    }
   }
 
   public feelingLuckySearch(query: string): void {
-    this.detailsService.searchType = 'title';
-    this.router.navigateByUrl(`details/title/${query}`);
+    if (query.trim() !== '') {
+      this.detailsService.searchType = 'title';
+      this.router.navigateByUrl(`details/title/${query}`);
+    } else {
+      this.toastr.error('Please enter a search query', '', {positionClass: 'toast-top-center'});
+    }
   }
 
   private setSearchQuery(url: string): string {

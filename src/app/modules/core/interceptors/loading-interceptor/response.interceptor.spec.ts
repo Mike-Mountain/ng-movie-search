@@ -1,6 +1,6 @@
 import {TestBed} from '@angular/core/testing';
 
-import {LoadingInterceptor} from './loading.interceptor';
+import {ResponseInterceptor} from './loading.interceptor';
 import {LoadingService} from '../../../shared/services/loading/loading.service';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
@@ -16,7 +16,7 @@ describe('LoadingInterceptor', () => {
         LoadingService,
         {
           provide: HTTP_INTERCEPTORS,
-          useClass: LoadingInterceptor,
+          useClass: ResponseInterceptor,
           multi: true
         }
       ]
@@ -29,7 +29,7 @@ describe('LoadingInterceptor', () => {
   });
 
   it('should be created', () => {
-    const interceptor: LoadingInterceptor = TestBed.inject(LoadingInterceptor);
+    const interceptor: ResponseInterceptor = TestBed.inject(ResponseInterceptor);
     expect(interceptor).toBeTruthy();
   });
 
