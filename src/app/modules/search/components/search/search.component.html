@@ -12,6 +12,7 @@
         class="form-control border-primary text-primary"
         id="mediaSearchInput"
         placeholder="Search movies, series, and video games"
+        (keydown.enter)="search(searchQuery)"
         [(ngModel)]="searchQuery"
       >
     </div>
