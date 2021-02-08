@@ -1,22 +1,21 @@
-<div #pageTop></div>
-<section class="results-list" *ngIf="results && results.search; else noResults">
-  <div class="results-content">
-    <app-spinner>
+<div class="w-100 flex-start" #pageTop></div>
+<app-spinner>
+  <section class="results-list" *ngIf="results && results.search; else noResults">
+    <div class="results-content">
       <ng-container *ngFor="let result of results.search">
         <app-result-list-item
           [searchResult]="result"
           [searchQuery]="searchQuery"
         ></app-result-list-item>
       </ng-container>
-    </app-spinner>
-  </div>
-  <app-pagination
-    [page]="currentPage"
-    [totalPages]="results.totalResults"
-    (newPage)="updatePage($event, pageTop)"
-  ></app-pagination>
-</section>
-
+    </div>
+    <app-pagination
+      [page]="currentPage"
+      [totalPages]="results.totalResults"
+      (newPage)="updatePage($event, pageTop)"
+    ></app-pagination>
+  </section>
+</app-spinner>
 <ng-template #noResults>
   <div class="w-100 h-100 flex-center">
     <div class="card mb-5">
