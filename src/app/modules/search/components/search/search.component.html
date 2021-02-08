@@ -1,13 +1,20 @@
 <section class="search bg-secondary text-light">
   <div class="form-group">
-    <label class="label" for="mediaSearchInput">Media Search</label>
-    <input
-      type="text"
-      class="form-control"
-      id="mediaSearchInput"
-      placeholder="Search movies, series, and video games"
-      [(ngModel)]="searchQuery"
-    >
+    <label class="label" for="mediaSearchInput">Ng Movie Search</label>
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text bg-primary border-primary text-light">
+          <i class="fas fa-search"></i>
+        </span>
+      </div>
+      <input
+        type="text"
+        class="form-control border-primary text-primary"
+        id="mediaSearchInput"
+        placeholder="Search movies, series, and video games"
+        [(ngModel)]="searchQuery"
+      >
+    </div>
   </div>
   <div
     class="flex-between"

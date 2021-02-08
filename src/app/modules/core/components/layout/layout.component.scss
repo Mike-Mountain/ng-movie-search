@@ -9,7 +9,7 @@
 }
 
 .show-content {
-  grid-template-rows: 2.5rem calc(100% - 2.5rem - 9rem) 9rem;
+  grid-template-rows: 2.7rem calc(100% - 2.5rem - 9rem) 9rem;
 }
 
 .content, .search {
@@ -39,7 +39,7 @@
 }
 
 .hide-content {
-  grid-template-rows: 2.5rem 0 1fr;
+  grid-template-rows: 2.7rem 0 1fr;
 }
 
 .navigation {
