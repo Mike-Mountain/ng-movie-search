@@ -3,6 +3,7 @@ import {Observable, Subscription} from 'rxjs';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ResultsService} from '../../services/results.service';
 import {ResultsList} from '../../models/results.model';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-results-list',
@@ -15,16 +16,19 @@ export class ResultsListComponent implements OnInit, OnDestroy {
   public searchQuery = '';
   public currentPage = 1;
   public results: ResultsList | undefined;
+  public currentLocation: Location | undefined;
 
   private paramSubscription: Subscription | undefined;
   private queryParamSubscription: Subscription | undefined;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
+              private location: Location,
               private resultsService: ResultsService) {
   }
 
   ngOnInit(): void {
+    this.currentLocation = this.location;
     this.paramSubscription = this.route.params.subscribe(params => {
       this.queryParamSubscription = this.route.queryParams.subscribe(queryParams => {
         // HTTP Observables complete after they emit once, no need to unsubscribe.
