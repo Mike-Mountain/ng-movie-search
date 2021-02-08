@@ -35,4 +35,7 @@
       Feelin' Lucky
     </button>
   </div>
+  <ng-container *ngIf="!isRouted">
+    <app-featured></app-featured>
+  </ng-container>
 </section>

@@ -1,0 +1,11 @@
+<app-spinner>
+  <div class="featured-list">
+    <ng-container *ngFor="let movie of movies | async; let idx = index">
+      <a
+        [routerLink]="'/details/id/' + featuredMovies[idx].imdbId + '/' + movie.title"
+        class="featured-poster"
+        [bgImage]="movie.poster"
+      ></a>
+    </ng-container>
+  </div>
+</app-spinner>
