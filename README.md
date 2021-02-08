@@ -1,39 +1,31 @@
-# NgStarter
+# NgMovieSearch
 
+* This Project was created using a [starter-project](https://github.com/Mike-Mountain/ng-starter) that I built to make protoyping easier.
+  The starter project contains boilerplate code that typically consumes time when creating a new project.
 * This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.2.
-* This project was created as a starter project to be forked.
 
-Features:
-* Routing
-* SCSS
-* Shared module with base http service
-* SCSS directory:
-    * CSS Reset
-    * Boostrap utility classes (extended)
-    * Breakpoint scss mixin for easier mobile-first development
-    * CSS Variables (CSS Properties) for customization
+## Technical Test instructions:
+1. Create a Progressive WEB APP that allows a user to search for a movie and display the details
+2.  Use the following Service as the Backend: http://omdbapi.com/
+3.  Provide unit tests
+4.  Use bootstrap for styling.
+5.  Upload your project into your own GIT repository and share the project with us by Tuesday 9/02 @ 8:00
 
+## Running the App:
 
-## Development server
+The app is hosted with firebase and can be viewed at [ng-media-search.web.app](https://ng-media-search.web.app).
 
+### Development server
 Run `npm run dev` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+### Build
+* Run `npm run build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `:prod` flag for a production build.
+* Run `npm run pwa` to build the app with the `:prod` flag, and then serve it via [http-server](https://www.npmjs.com/package/http-server).
+* Run `npm run pwa:dev` to run an [http-server](https://www.npmjs.com/package/http-server) that points to the `dist` folder.
+  Please note that you must have run a build command at least once before you run this command.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Running unit tests
+Run `npm run test` to execute the unit tests. Code-coverage report will be generated as well.
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
+### Running end-to-end tests
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
