@@ -9,7 +9,7 @@ import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
 import {ToastrModule} from 'ngx-toastr';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {ResponseInterceptor} from './modules/core/interceptors/loading-interceptor/response.interceptor';
+import {ResponseInterceptor} from './modules/core/interceptors/response-interceptor/response.interceptor';
 
 @NgModule({
   declarations: [
