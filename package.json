@@ -7,6 +7,7 @@
     "dev": "ng serve -c dev",
     "dev:host": "ng serve -c dev --host 192.168.43.119",
     "build": "ng build",
+    "build:prod": "ng build --prod",
     "pwa:dev": "http-server -p 8080 -c-1 dist/ng-movie-search",
     "pwa": "ng build --prod && http-server -p 8080 -c-1 dist/ng-movie-search",
     "test": "ng test --code-coverage true --source-map true",
