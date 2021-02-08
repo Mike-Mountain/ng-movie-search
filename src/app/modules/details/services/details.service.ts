@@ -13,8 +13,6 @@ export class DetailsService extends BaseHttpService<SearchResultDetails> {
 
   public searchType: 'id' | 'title' = 'id';
   public imdbIdSrc: string | undefined;
-  private detailsSrc = new BehaviorSubject<SearchResultDetails | undefined>(undefined);
-  public detailsStore = this.detailsSrc.asObservable();
 
   constructor(private http: HttpClient) {
     super(http);
@@ -23,7 +21,6 @@ export class DetailsService extends BaseHttpService<SearchResultDetails> {
   getDetails(imdbId: string): Observable<SearchResultDetails> {
     const url = super.setUrl('i', imdbId);
     return super._get(url).pipe(
-      tap(details => this.detailsSrc.next(details)),
       map(details => new SearchResultDetails(details as unknown as ApiDetailsModel)),
       catchError(err => {
         console.log(err);
@@ -35,16 +32,11 @@ export class DetailsService extends BaseHttpService<SearchResultDetails> {
   feelinLucky(imdbTitle: string): Observable<SearchResultDetails> {
     const url = super.setUrl('t', imdbTitle);
     return super._get(url).pipe(
-      tap(details => this.detailsSrc.next(details)),
       map(details => new SearchResultDetails(details as unknown as ApiDetailsModel)),
       catchError(err => {
         console.log(err);
         throw new Error();
       })
     );
-  }
-
-  public hasDetails(): boolean {
-    return this.detailsSrc.getValue() !== undefined;
   }
 }

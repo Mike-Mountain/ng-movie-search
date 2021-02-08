@@ -1,4 +1,6 @@
 @import "src/scss/mixins/util-mixins";
+@import "src/scss/variables/breakpoints";
+@import "src/scss/variables/theme-colours";
 
 .app-layout {
   height: 100%;
@@ -20,11 +22,15 @@
 
 .content {
   max-height: 100%;
-  width: 95%;
+  width: 90%;
   margin: -.25rem auto;
   overflow-y: auto;
   z-index: 8;
   padding: .5rem;
+  @include breakpoint('tablet-wide', 'min') {
+    width: 45%;
+    margin: 0 auto;
+  }
 }
 
 .card {
@@ -39,4 +45,20 @@
 .navigation {
   width: 100%;
   z-index: 9;
+}
+
+// Style scrollbar on larger devices
+@media screen and (min-width: map-get($breakpoints, 'tablet-wide')) {
+  #content::-webkit-scrollbar-track {
+    background-color: $light;
+  }
+
+  #content::-webkit-scrollbar {
+    width: 5px;
+    background-color: $light;
+  }
+
+  #content::-webkit-scrollbar-thumb {
+    background-color: darken($light, 15%);
+  }
 }

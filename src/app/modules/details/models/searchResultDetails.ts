@@ -5,10 +5,8 @@ export class ResultRatings {
   value: string;
 
   constructor(params: ApiRatingsModel) {
-    console.log(params.Source);
     this.source = params.Source;
     this.value = params.Value;
-    console.log(this);
   }
 }
 

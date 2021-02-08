@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, ElementRef, OnDestroy, OnInit} from '@angular/core';
 import {Observable, Subscription} from 'rxjs';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ResultsService} from '../../services/results.service';
@@ -33,16 +33,6 @@ export class ResultsListComponent implements OnInit, OnDestroy {
           this.searchQuery = params.query;
           this.currentPage = parseInt(queryParams.page, 10);
         });
-        // TODO: Using the store to save the results of previous searches seems to break the UI when going back
-        // if (this.resultsService.searchQuerySrc !== params.query && this.resultsService.hasResults()) {
-        //   this.results$ = this.resultsService.resultsStore as Observable<ResultsList>;
-        //   console.log(this.results$);
-        //   this.resultsService.searchQuerySrc = params.query;
-        // } else {
-        // this.searchQuery = params.query;
-        // this.results$ = this.resultsService.searchMedia('s', params.query, queryParams.page);
-        // this.currentPage = parseInt(queryParams.page, 10);
-        // }
       });
     });
   }
@@ -52,8 +42,9 @@ export class ResultsListComponent implements OnInit, OnDestroy {
     this.queryParamSubscription?.unsubscribe();
   }
 
-  public updatePage(page: number): void {
-    // this.results$ = this.resultsService.getNewPage(page, this.searchQuery);
-    this.router.navigate([], {queryParams: {page}});
+  public updatePage(page: number, pageTop: Element): void {
+    this.router.navigate([], {queryParams: {page}}).then(() => {
+      pageTop.scrollIntoView();
+    });
   }
 }

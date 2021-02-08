@@ -23,17 +23,11 @@ export class DetailsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.paramSubscription = this.route.params.subscribe(params => {
-      // TODO: Using the store to save the details of previous searches seems to break the UI when going back
-      // if (this.detailsService.imdbIdSrc !== params.imdbId && this.detailsService.hasDetails()) {
-      //   this.details$ = this.detailsService.detailsStore as Observable<SearchResultDetails>;
-      //   this.detailsService.imdbIdSrc = params.imdbId;
-      // } else {
       if (this.detailsService.searchType === 'id' && params.imdbId) {
         this.details$ = this.detailsService.getDetails(params.imdbId);
       } else {
         this.details$ = this.detailsService.feelinLucky(params.query);
       }
-      // }
     });
   }
 

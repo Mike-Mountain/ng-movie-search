@@ -1,9 +1,5 @@
+<div #pageTop></div>
 <section class="results-list" *ngIf="results">
-  <app-pagination
-    [page]="currentPage"
-    [totalPages]="results.totalResults"
-    (newPage)="updatePage($event)"
-  ></app-pagination>
   <div class="results-content">
     <app-spinner>
       <ng-container *ngFor="let result of results.search">
@@ -17,6 +13,6 @@
   <app-pagination
     [page]="currentPage"
     [totalPages]="results.totalResults"
-    (newPage)="updatePage($event)"
+    (newPage)="updatePage($event, pageTop)"
   ></app-pagination>
 </section>

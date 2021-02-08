@@ -65,13 +65,11 @@ export class PaginationComponent implements OnInit {
         }
         break;
     }
-
-    console.log(this.page);
     this.newPage.emit(this.page);
   }
 
   private getFinalPage(totalPages: number): number {
-    return totalPages / 10;
+    return Math.ceil(totalPages / 10);
   }
 
 }

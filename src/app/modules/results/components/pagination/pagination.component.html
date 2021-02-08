@@ -1,8 +1,9 @@
 <div class="pagination justify-content-center">
   <div class="page-item">
     <button
-      *ngIf="page !== 1"
       class="page-link"
+      [disabled]="page === 1"
+      [class.disabled]="page === 1"
       (click)="updatePage('first')"
     >
       <span aria-hidden="true">&laquo;&laquo;</span>
@@ -11,8 +12,9 @@
   </div>
   <div class="page-item">
     <button
-      *ngIf="page !== 1"
       class="page-link"
+      [disabled]="page === 1"
+      [class.disabled]="page === 1"
       (click)="updatePage('previous')"
     >
       <span aria-hidden="true">&laquo;</span>

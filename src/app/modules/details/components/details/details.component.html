@@ -1,6 +1,6 @@
 <ng-container *ngIf="details$ | async as details">
   <section class="details-container">
-    <div [bgImage]="details.poster"></div>
+    <div *ngIf="details.poster" [bgImage]="details.poster | defaultImage"></div>
     <div class="details">
       <h2 class="card-title">{{(details.title | breakTitle)?.title || details.title}}</h2>
       <h4 class="card-subtitle">{{(details.title | breakTitle)?.subtitle}}</h4>
@@ -63,7 +63,7 @@
                   </ng-container>
                 </div>
               </div>
-              <div class="w-100 flex-center">
+              <div class="w-100 flex-center" *ngIf="details.awards && details.awards !== 'N/A'">
                 <small class="card custom-card my-1 text-wrap">{{details.awards}}</small>
               </div>
             </ng-container>
