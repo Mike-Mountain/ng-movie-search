@@ -10,6 +10,7 @@
     "build:prod": "ng build --prod",
     "pwa:dev": "http-server -p 8080 -c-1 dist/ng-movie-search",
     "pwa": "ng build --prod && http-server -p 8080 -c-1 dist/ng-movie-search",
+    "firebase:deploy": "ng build --prod && firebase deploy",
     "test": "ng test --code-coverage true --source-map true",
     "lint": "ng lint",
     "e2e": "ng e2e"
