@@ -1,6 +1,9 @@
-<div class="card border-primary my-1" *ngIf="searchResult">
+<a
+  *ngIf="searchResult"
+  class="card my-1"
+  [routerLink]="'/details/id/' + searchResult.imdbID + '/' + searchQuery"
+>
   <div class="flex-between flex-align-start">
-    <!--// TODO: set up a light box for image view -->
     <div class="poster">
       <img
         class="poster-image"
@@ -9,11 +12,11 @@
       >
     </div>
     <div class="details">
-      <a class="card-title" [routerLink]="'/details/id/' + searchResult.imdbID + '/' + searchQuery">
+      <h3 class="card-title mb-0">
         {{(searchResult.title | breakTitle)?.title || searchResult.title}}
-      </a>
-      <p class="card-subtitle">{{(searchResult.title | breakTitle)?.subtitle}}</p>
-      <small class="text-sm-left">{{searchResult.type}}</small>
+      </h3>
+      <small class="card-subtitle my-1">{{(searchResult.title | breakTitle)?.subtitle}}</small>
+      <small class="text-sm-left text-info mt-1">{{searchResult.type}}</small>
     </div>
   </div>
-</div>
+</a>

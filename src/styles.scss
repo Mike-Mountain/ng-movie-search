@@ -5,6 +5,9 @@
 @import '~ngx-toastr/toastr';
 @import "scss/utils/all";
 
+html, body {
+  background-color: $secondary;
+}
 
 .toast-top-full-width {
   top: 3em;
