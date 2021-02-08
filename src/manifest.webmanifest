@@ -1,8 +1,8 @@
 {
-  "name": "ng-movie-search",
+  "name": "ngMovieSearch",
   "short_name": "ng-movie-search",
-  "theme_color": "#1976d2",
-  "background_color": "#fafafa",
+  "theme_color": "#F57600",
+  "background_color": "#003152",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",
