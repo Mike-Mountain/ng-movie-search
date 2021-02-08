@@ -40,8 +40,4 @@ describe('LayoutComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
-  it('should detect the current route', () => {
-    //
-  });
 });

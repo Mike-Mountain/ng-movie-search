@@ -9,8 +9,11 @@ import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {ToastrModule} from 'ngx-toastr';
 import {FeaturedComponent} from './modules/search/components/featured/featured.component';
 import {SpinnerComponent} from './modules/shared/components/spinner/spinner.component';
+import {SwUpdate} from '@angular/service-worker';
 
 describe('AppComponent', () => {
+  const mockSwUpdateInstance = new SwUpdate({isEnabled: false} as any);
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
@@ -27,6 +30,9 @@ describe('AppComponent', () => {
         FeaturedComponent,
         SpinnerComponent
       ],
+      providers: [
+        {provide: SwUpdate, useValue: mockSwUpdateInstance}
+      ]
     }).compileComponents();
   });
 

@@ -1,1 +1,18 @@
 <app-layout></app-layout>
+
+<ng-container *ngIf="hasUpdate">
+  <div class="update-notification">
+    <div class="alert alert-light text-center">
+      <h4>There is an update available!</h4>
+      <p>Would you like to update?</p>
+      <div class="flex-between mt-2">
+        <button class="btn btn-secondary btn-sm" (click)="hasUpdate = false">
+          Not right now
+        </button>
+        <button class="btn btn-primary btn-sm" (click)="updateApplication(); hasUpdate = false">
+          Yes please
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-container>

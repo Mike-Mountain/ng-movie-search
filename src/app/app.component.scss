@@ -1,0 +1,14 @@
+@import "src/scss/variables/theme-colours";
+
+.update-notification {
+  width: 85%;
+  position: absolute;
+  bottom: .75rem;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+.alert-light {
+  background-color: rgba(lighten($light, 10%), .95);
+  color: $primary
+}
