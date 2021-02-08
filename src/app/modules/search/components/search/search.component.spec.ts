@@ -4,6 +4,9 @@ import {SearchComponent} from './search.component';
 import {RouterTestingModule} from '@angular/router/testing';
 import {FormsModule} from '@angular/forms';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {ToastrModule} from 'ngx-toastr';
+import {FeaturedComponent} from '../featured/featured.component';
+import {SpinnerComponent} from '../../../shared/components/spinner/spinner.component';
 
 describe('SearchComponent', () => {
   let component: SearchComponent;
@@ -11,8 +14,17 @@ describe('SearchComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule, FormsModule, HttpClientTestingModule],
-      declarations: [SearchComponent]
+      imports: [
+        RouterTestingModule,
+        FormsModule,
+        HttpClientTestingModule,
+        ToastrModule.forRoot()
+      ],
+      declarations: [
+        SearchComponent,
+        FeaturedComponent,
+        SpinnerComponent
+      ]
     })
       .compileComponents();
   });

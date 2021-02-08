@@ -1,8 +1,10 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ResultsListComponent } from './results-list.component';
+import {ResultsListComponent} from './results-list.component';
 import {RouterTestingModule} from '@angular/router/testing';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {SpinnerComponent} from '../../../shared/components/spinner/spinner.component';
+import {PaginationComponent} from '../pagination/pagination.component';
 
 describe('ResultsListComponent', () => {
   let component: ResultsListComponent;
@@ -10,10 +12,10 @@ describe('ResultsListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ResultsListComponent ],
+      declarations: [ResultsListComponent, SpinnerComponent, PaginationComponent],
       imports: [RouterTestingModule, HttpClientTestingModule]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

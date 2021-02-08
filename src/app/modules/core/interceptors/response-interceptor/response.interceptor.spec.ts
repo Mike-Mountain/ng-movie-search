@@ -1,17 +1,19 @@
 import {TestBed} from '@angular/core/testing';
 
-import {ResponseInterceptor} from './loading.interceptor';
+import {ResponseInterceptor} from './response.interceptor';
 import {LoadingService} from '../../../shared/services/loading/loading.service';
-import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {ResultsService} from '../../../results/services/results.service';
+import {ToastrModule} from 'ngx-toastr';
 
 describe('LoadingInterceptor', () => {
   let service: LoadingService;
   let resultsService: ResultsService;
+  let httpMock: HttpTestingController;
 
   beforeEach(() => TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
+      imports: [HttpClientTestingModule, ToastrModule.forRoot()],
       providers: [
         LoadingService,
         {
@@ -26,11 +28,7 @@ describe('LoadingInterceptor', () => {
   beforeEach(() => {
     service = TestBed.inject(LoadingService);
     resultsService = TestBed.inject(ResultsService);
-  });
-
-  it('should be created', () => {
-    const interceptor: ResponseInterceptor = TestBed.inject(ResponseInterceptor);
-    expect(interceptor).toBeTruthy();
+    httpMock = TestBed.inject(HttpTestingController);
   });
 
   it('should update the loading state', () => {

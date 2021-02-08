@@ -1,6 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { FeaturedComponent } from './featured.component';
+import {FeaturedComponent} from './featured.component';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {SpinnerComponent} from '../../../shared/components/spinner/spinner.component';
 
 describe('FeaturedComponent', () => {
   let component: FeaturedComponent;
@@ -8,9 +10,10 @@ describe('FeaturedComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FeaturedComponent ]
+      imports: [HttpClientTestingModule],
+      declarations: [FeaturedComponent, SpinnerComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

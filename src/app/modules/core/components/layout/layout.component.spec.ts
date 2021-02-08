@@ -6,6 +6,8 @@ import {RouterTestingModule} from '@angular/router/testing';
 import {SearchComponent} from '../../../search/components/search/search.component';
 import {SearchModule} from '../../../search/search.module';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {ToastrModule} from 'ngx-toastr';
+import {SpinnerComponent} from '../../../shared/components/spinner/spinner.component';
 
 describe('LayoutComponent', () => {
   let component: LayoutComponent;
@@ -16,12 +18,14 @@ describe('LayoutComponent', () => {
       declarations: [
         LayoutComponent,
         NavbarComponent,
-        SearchComponent
+        SearchComponent,
+        SpinnerComponent
       ],
       imports: [
         RouterTestingModule,
         SearchModule,
-        HttpClientTestingModule
+        HttpClientTestingModule,
+        ToastrModule.forRoot()
       ]
     })
       .compileComponents();

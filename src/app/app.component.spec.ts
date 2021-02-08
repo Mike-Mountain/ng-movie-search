@@ -6,6 +6,9 @@ import {NavbarComponent} from './modules/core/components/navbar/navbar.component
 import {SearchComponent} from './modules/search/components/search/search.component';
 import {SearchModule} from './modules/search/search.module';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {ToastrModule} from 'ngx-toastr';
+import {FeaturedComponent} from './modules/search/components/featured/featured.component';
+import {SpinnerComponent} from './modules/shared/components/spinner/spinner.component';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -13,13 +16,16 @@ describe('AppComponent', () => {
       imports: [
         RouterTestingModule,
         SearchModule,
-        HttpClientTestingModule
+        HttpClientTestingModule,
+        ToastrModule.forRoot()
       ],
       declarations: [
         AppComponent,
         LayoutComponent,
         NavbarComponent,
-        SearchComponent
+        SearchComponent,
+        FeaturedComponent,
+        SpinnerComponent
       ],
     }).compileComponents();
   });

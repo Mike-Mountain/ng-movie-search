@@ -25,14 +25,16 @@ describe('PaginationComponent', () => {
 
   it('should paginate next', () => {
     component.page = 1;
+    component.totalPages = 50;
     component.updatePage('next');
     expect(component.page).toEqual(2);
   });
 
   it('should paginate previous', () => {
-    component.page = 3;
+    component.page = 5;
+    component.totalPages = 50;
     component.updatePage('previous');
-    expect(component.page).toEqual(2);
+    expect(component.page).toEqual(4);
   });
 
   it('should not paginate back if the page is 1', () => {
