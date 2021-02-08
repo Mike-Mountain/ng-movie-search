@@ -13,8 +13,6 @@
 
 ## Running the App:
 
-The app is hosted with firebase and can be viewed at [ng-media-search.web.app](https://ng-media-search.web.app).
-
 ### Development server
 Run `npm run dev` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
@@ -23,6 +21,12 @@ Run `npm run dev` for a dev server. Navigate to `http://localhost:4200/`. The ap
 * Run `npm run pwa` to build the app with the `:prod` flag, and then serve it via [http-server](https://www.npmjs.com/package/http-server).
 * Run `npm run pwa:dev` to run an [http-server](https://www.npmjs.com/package/http-server) that points to the `dist` folder.
   Please note that you must have run a build command at least once before you run this command.
+
+### Hosting
+The app is hosted with firebase and can be viewed at [ng-media-search.web.app](https://ng-media-search.web.app).
+
+The deployment process builds the app for production and uses the firebase cli to release a new version when running the 
+command `npm run firebase:deploy`. This command (along with other firebase-specific files) is only present on the `firebase` branch.
 
 ### Running unit tests
 Run `npm run test` to execute the unit tests. Code-coverage report will be generated as well.
