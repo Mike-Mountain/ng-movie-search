@@ -3,6 +3,7 @@
 * This Project was created using a [starter-project](https://github.com/Mike-Mountain/ng-starter) that I built to make protoyping easier.
   The starter project contains boilerplate code that typically consumes time when creating a new project.
 * This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.2.
+* This project was created using a mobile-first methodology. Therefore, it is best viewed on a smaller screen.
 
 ## Technical Test instructions:
 1. Create a Progressive WEB APP that allows a user to search for a movie and display the details
